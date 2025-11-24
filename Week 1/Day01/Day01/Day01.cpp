@@ -18,9 +18,58 @@ void print(const std::vector<std::string>& names)
         std::cout << index++ << ". " << name << "\n";
 }
 
+void Sample()
+{
+    int w = Console::GetWindowWidth(), h = Console::GetWindowHeight();
+    int x, y;
+    int r, g, b;
+    while (true)
+    {
+        x = rand() % w;
+        y = rand() % h;
+        r = rand() % 255;
+        Console::SetBackgroundColor(r, 0, 0);
+        Console::SetCursorPosition(x, y);
+        Console::Write(" ");
+    }
+    Console::Reset();
+}
+
+
+//write a method to randomly fill the screen with red blocks
+//Console::SetCursorPosition to move the cursor
+//SetBackgroundColor to set the color
+//Write or cout to print a space
+void RandomColors()
+{
+    int w = Console::GetWindowWidth();
+    int h = Console::GetWindowHeight();
+    int x, y;
+    int red;//0-255
+    while (true)
+    {
+        x = rand() % w;
+        y = rand() % h;
+        Console::SetCursorPosition(x, y);
+        red = rand() % 256;
+        Console::SetBackgroundColor(red, 0, 0);
+        Console::Write(" ");
+    }
+    Console::Reset();
+}
 
 int main()
 {
+    // rand() - generates a random # from 0 - 32767
+    //how to limit a number to a specific range?
+    // % num returns the remainder after dividing by num
+    // range: 0 - num-1
+    //0 - 100
+    // % 101
+
+    Console::ResizeWindow(100, 25);
+    RandomColors();
+
     //Input and Console examples   
     // 
     //std::string myName = Input::GetString("What is your name?");
