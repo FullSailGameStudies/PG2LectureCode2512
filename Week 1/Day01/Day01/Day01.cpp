@@ -4,6 +4,7 @@
 #include "Calculator.h"
 #include "Console.h"
 #include "Input.h"
+#include <Menu.h>
 
 int AddOne(int localNumber)
 {
@@ -68,7 +69,24 @@ int main()
     // % 101
 
     Console::ResizeWindow(100, 25);
-    RandomColors();
+    //RandomColors();
+
+    Menu cafe;
+    cafe.AddMenuItem("coffee");
+    cafe.AddMenuItem("tea");
+    cafe.AddMenuItem("blueberry muffins");
+    cafe.AddMenuItem("bagel");//index 3
+    cafe.AddMenuItem("bacon");
+    cafe.ShowMenu();
+    cafe.EraseItem("Bagel");
+    cafe.ShowMenu();
+
+    Menu mcDs;
+    mcDs.AddMenuItem("McGriddle");
+    mcDs.AddMenuItem("McMuffin");
+
+
+    Input::PressEnter("Press enter to continue...", true);
 
     //Input and Console examples   
     // 
