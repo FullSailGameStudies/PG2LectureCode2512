@@ -3,6 +3,9 @@
 #include <vector>
 #include "FullSailCourse.h"
 
+const double pi = 3.14159;
+const int NOT_FOUND = -1;
+
 bool postFix(std::string& hero)
 {
     srand((unsigned int)time(NULL));
@@ -92,13 +95,11 @@ int main()
     */
     std::vector<float> grades;
     FullSailCourse pg2;
+    const FullSailCourse pg1;//can ONLY call const functions on this object
+    //pg1.SetCourseName("PG1");
+    pg2.SetCourseName("PG2 2512");
     pg2.GetGrades(grades);
-    std::cout << "\n\nPG2 2512\n";
-    for (float& grade : grades)
-    {
-        std::cout << grade << "\n";
-    }
-    std::cout << "\n\n";
+    pg2.PrintGrades(grades);
 
 
 
@@ -125,10 +126,14 @@ int main()
 
             Write a method to calculate the stats on a vector of grades
             1) create a method to calculate the min, max. 
-                pass the grades vector as a const reference. Use ref parameters for min and max.
+                pass the grades vector as a const reference. 
+                Use ref parameters for min and max.
             2) call the method in main and print out the min, max.
 
     */
+    float minGrade, maxGrade;
+    pg2.CalculateStats(grades, minGrade, maxGrade);
+    std::cout << "\n\nMin Grade: " << minGrade << "\nMax Grade: " << maxGrade << "\n\n";
 
 
 
