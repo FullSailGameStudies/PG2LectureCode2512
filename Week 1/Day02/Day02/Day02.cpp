@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include "FullSailCourse.h"
 
 bool postFix(std::string& hero)
 {
@@ -33,8 +34,37 @@ void printInfo(const std::vector<int>& scores)
     std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
 }
 
+//pass by reference (ALIAS)
+//  - prevents a copy (performance)
+//  - allows access to a variable in a different scope
+void AddMe(int& num)
+{
+    num++;
+}
+void RandomMinMax(int& min, int& max)
+{
+    min = rand();
+    max = rand();
+}
+//void AddMe(int me)//pass by value (COPY)
+//{
+//
+//}
+
+//when to use pass by reference?
+// - for class types for performance (to prevent a copy)
+// - if you need to access the other scope to update it
+
 int main()
 {
+    int n = 5;
+    AddMe(n);
+    //only set the reference when you create the variable
+    int& nRef = n;
+    nRef = 10;
+    int n2 = 20;
+    nRef = n2;//copy n2 to nRef (n)
+    std::cout << n << "\n";
     /*
         ╔══════════════════════════════╗
         ║Parameters: Pass by Reference.║
@@ -56,9 +86,19 @@ int main()
             Write a method to fill the vector of floats with grades.
             1) pass it in by reference
             2) add 10 grades to the vector
+            3) call the method to fill 
+            4) print the vector in main
 
     */
     std::vector<float> grades;
+    FullSailCourse pg2;
+    pg2.GetGrades(grades);
+    std::cout << "\n\nPG2 2512\n";
+    for (float& grade : grades)
+    {
+        std::cout << grade << "\n";
+    }
+    std::cout << "\n\n";
 
 
 
