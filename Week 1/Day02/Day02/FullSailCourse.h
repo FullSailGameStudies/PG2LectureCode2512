@@ -13,10 +13,7 @@ public:
 	{
 		return courseName;
 	}
-	void SetCourseName(const std::string& name)
-	{
-		courseName = name;
-	}
+	void SetCourseName(const std::string& name = "PG2");
 	void CalculateStats(const std::vector<float>& course, float& min, float& max) const;
 
 private:

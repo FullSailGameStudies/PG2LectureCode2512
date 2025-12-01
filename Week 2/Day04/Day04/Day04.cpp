@@ -19,7 +19,16 @@ std::string toUpper(const std::string& original)
 
 void recursiveLoop(int N)
 {
-    recursiveLoop(N + 1);
+    //ALL recursive methods REQUIRE an exit condition (base case)
+    //an exit condition returns w/out calling recursiveLoop
+    //if(N < 10)
+    if (N >= 10) return;
+
+    {
+        Console::Write(N, ConsoleColor::Cyan);
+        recursiveLoop(N + 1);//the recursive case
+        Console::Write(N, ConsoleColor::Red);//unwinding the stack
+    }
 }
 
 unsigned long factorial(unsigned int N)
@@ -55,17 +64,53 @@ unsigned long factorial(unsigned int N)
 
 */
 
+//        procedure bubbleSort(A : list of sortable items)
+void bubbleSort(std::vector<std::string>& A)
+{
+    //n := length(A)
+    int n = A.size();
+    //repeat
+    bool swapped = false;
+    do
+    {
+        //swapped: = false
+        swapped = false;
+        //for i := 1 to n - 1 inclusive do
+        for (int i = 1; i <= n-1; i++)
+        {
+            //if A[i - 1] > A[i] then
+            if (A[i - 1] > A[i])
+            {
+                //swap(A, i - 1, i) 
+                std::swap(A[i - 1], A[i]);
+
+                //swapped = true
+                swapped = true;
+            }//end if
+        }//end for
+        //n := n - 1
+        --n;
+    } while (swapped);//while swapped
+}//end procedure
+
 int main()
 {
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << i << " ";
+
+    }
+    std::cout << "\n\n";
     std::vector<std::string> names = { "Wonder Woman", "Superman", "Batman", "Flash", "Aquaman" };
     //call your BubbleSort on the names vector.
 
     Console::WriteLine("--UNSORTED--", ConsoleColor::Yellow);
-    //print the sorted vector.
+    //print the unsorted vector.
     for (auto& name : names)
         std::cout << name << "\n";
 
     //call BubbleSort
+    bubbleSort(names);
 
     Console::WriteLine("--SORTED--", ConsoleColor::Yellow);
     //print the sorted vector.

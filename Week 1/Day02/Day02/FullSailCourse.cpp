@@ -35,3 +35,8 @@ void FullSailCourse::CalculateStats(const std::vector<float>& course, float& min
         if (max < course[i]) max = course[i];
     }
 }
+
+void FullSailCourse::SetCourseName(const std::string& name)
+{
+    courseName = name;
+}
