@@ -13,6 +13,36 @@ enum class Weapon
     Sword, Axe, Spear, Mace
 };
 
+const int NOT_FOUND = -1;
+
+int LinearSearch(const std::vector<int>& nummies, int num)
+{
+    for (int i = 0; i < nummies.size(); i++)
+    {
+        if (num == nummies[i])
+        {
+            return i;
+        }
+    }
+    return NOT_FOUND;//??
+}
+void FillGrades(const std::vector<std::string>& students,
+    std::map<std::string, double>& course)
+{
+    for (auto& student : students)
+    {
+        //course[student] = rand() % 10001 / 100.0;
+        //OR...
+        std::pair<std::string, double> studentToAdd =
+            std::make_pair(student, rand() % 10001 / 100.0);
+        auto studentInserted = course.insert(studentToAdd);
+        if (studentInserted.second == false)
+            std::cout << student << " is already enrolled.\n";
+    }
+}
+//add a method to print your grades map
+//call the method in main to print it
+
 
 int main()
 {
@@ -37,7 +67,14 @@ int main()
 
     */
     std::vector<int> numbers = { 0,1,2,3,4,5,6 };
-    int searchNumber = 15;
+    int searchNumber = 6;
+    int index = LinearSearch(numbers, searchNumber);
+    if (index == NOT_FOUND)
+    {
+        std::cout << searchNumber << " was not found.\n";
+    }
+    else
+        std::cout << searchNumber << " was found at index " << index << "\n";
 
 
 
@@ -77,13 +114,71 @@ int main()
     dorasBackpack[Weapon::Axe] = 7;//simply overwrites the value if the key is already in the map
 
 
+
+    std::map<std::string,float> menu;
+    //how to add data?
+    //1) easy way  map[key] = value;
+    menu["bacon"] = 4.99f;
+    menu["egg sandwich"] = 7.49f;
+    menu["egg sandwich"] = 7.99f;//overwrite any existing value
+
+    //2) not-easy way map.insert(key-value pair)
+    std::pair<std::string, float> menuPair = 
+        std::make_pair("coffee", 2.99f);
+    menu.insert(menuPair);
+    //pair objects have a "first" and "second" parts
+    menuPair.second = 3.99f;
+    //first: iterator to the key-value pair in the map
+    //second: whether it was inserted or not
+    std::pair<std::map<std::string,float>::iterator,bool> wasInserted = menu.insert(menuPair);//?? does NOT replace an existing value
+    if (wasInserted.second == false)
+    {
+        std::cout << "item was already on the menu.\n";
+        std::cout << "Do you want to change the price?\n";
+    }
+    else
+    {
+        //first is an iterator to a key-value pair
+        std::cout << wasInserted.first->second << "\n";
+    }
+
+    std::string menuItem = "pancakes";
+    float price = menu[menuItem];
+    std::cout << menuItem << " costs " << price << "\n";
+
+    std::cout << "\n\nPG2 Cafe\n";
+    for (auto it = menu.begin(); it != menu.end(); it++)
+    {
+        std::cout << it->first << "\t\t" << it->second << "\n";
+    }
+    std::cout << "\n\nPG2 Cafe\n";
+    for (auto& kvp : menu)
+    {
+        std::cout << kvp.first << "\t\t" << kvp.second << "\n";
+    }
+    std::cout << "\n\nPG2 Cafe\n";
+    //use structured binding
+    for (auto& [itemName,itemPrice] : menu)
+    {
+        std::cout << itemName << "\t\t" << itemPrice << "\n";
+    }
+
+
     /*
         CHALLENGE:
 
-            Create a map that stores names (string) and grades. Call the variable grades.
+            Create a map that stores names (string) and grades. 
+            Call the variable grades.
             Add students and grades to your map.
 
     */
+    std::map<std::string, double> grades;
+    std::vector<std::string> students = {
+        "Garrett","Ray","Jedin","Braxton","Foster","Jacob","Audrey",
+        "James","Jerry","Raymond","Marley","Gabriel","Sean",
+        "Ryan","Whitney","Beavon","Jamichael","Teshantiy"
+    };
+    FillGrades(students, grades);
 
 
 
