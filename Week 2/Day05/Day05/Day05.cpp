@@ -185,6 +185,21 @@ int main()
         std::cout << itemName << "\t\t" << itemPrice << "\n";
     }
 
+    std::string itemToFind = "coffee";
+    auto foundItem = menu.find(itemToFind);
+    if (foundItem == menu.end()) //was not found
+    {
+        std::cout << itemToFind << " is not on the menu. Try Dunkin\n";
+    }
+    else
+    {
+        float oldPrice = foundItem->second;
+        foundItem->second *= 1.05f;
+        //menu[itemToFind] = oldPrice * 1.05;
+        std::cout << itemToFind << " used to costs " << oldPrice << "\n";
+        std::cout << "Now it costs " << foundItem->second << "! Thanks Putin!!\n";
+    }
+
 
     /*
         CHALLENGE:
