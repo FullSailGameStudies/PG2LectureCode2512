@@ -7,6 +7,7 @@
 #include <vector>
 #include "Console.h"
 #include "Input.h"
+#include <iomanip>
 
 enum class Weapon
 {
@@ -29,6 +30,7 @@ int LinearSearch(const std::vector<int>& nummies, int num)
 void FillGrades(const std::vector<std::string>& students,
     std::map<std::string, double>& course)
 {
+    srand(time(NULL));
     for (auto& student : students)
     {
         //course[student] = rand() % 10001 / 100.0;
@@ -42,7 +44,27 @@ void FillGrades(const std::vector<std::string>& students,
 }
 //add a method to print your grades map
 //call the method in main to print it
-
+void PrintGrades(const std::map<std::string, double>& course)
+{
+    std::cout << "\n\nPG2 2512\n";
+    //use structured binding
+    for (auto& [student, grade] : course)
+    {
+        //setw(#) will print the next item in the number of spaces
+        std::cout << std::setw(10) << std::left << student;
+        Console::SetForegroundColor(
+            //ternary operator  (condition) ? true block : false block
+            (grade < 59.5) ? ConsoleColor::Red :
+            (grade < 69.5) ? ConsoleColor::Yellow :
+            (grade < 79.5) ? ConsoleColor::Blue :
+            (grade < 89.5) ? ConsoleColor::Magenta :
+            ConsoleColor::Green
+        );
+        Console::SetCursorLeft(17);
+        std::cout << std::setw(7) << std::right << grade << "\n";
+        Console::Reset();
+    }
+}
 
 int main()
 {
@@ -179,7 +201,7 @@ int main()
         "Ryan","Whitney","Beavon","Jamichael","Teshantiy"
     };
     FillGrades(students, grades);
-
+    PrintGrades(grades);
 
 
 
