@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include "Pistol.h"
+#include "Color.h"
 
 
 /*              CLASSESS
@@ -44,10 +46,14 @@
 
 int main()
 {
-    /*
-        Lecture code: add a Car class
-    
-    */
+    Color clr{ 255,0,0,255 };
+    //EVERYTIME you create an instance of a class, you are calling a constructor
+    //Pistol revolver;//calling a default ctor
+    Pistol revolver("45 Desert Eagle", 5, 9);
+    //revolver.MagSize(20);//calls the setter
+    //revolver.SetRounds(10);//calls the setter
+    //revolver.Caliber("38special");
+    std::cout << revolver.Caliber() << " " << revolver.GetRounds() << ": " << revolver.MagSize() << "\n";
 
     /*
         CHALLENGE:
