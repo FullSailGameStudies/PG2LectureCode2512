@@ -31,6 +31,16 @@ public:
 		return caliber_;
 	}
 
+	//2. add a method with the SAME SIGNATURE as the base
+	//	'override' is optional, but good
+	int CalculateDamage() override;
+
+	Pistol operator+(const Pistol& other)
+	{
+		Pistol newGun(Damage(), Range(), caliber_, rounds_ + other.rounds_, magSize_);
+		return newGun;
+	}
+
 	//setters (mutators)
 	//  void return types
 	//  1 parameter (usually) to set the field with

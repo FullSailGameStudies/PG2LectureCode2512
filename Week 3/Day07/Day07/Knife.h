@@ -9,6 +9,10 @@ public:
 		length_(length)
 	{
 	}
+	int CalculateDamage() override
+	{
+		return Weapon::CalculateDamage();
+	}
 
 	int Length() const { return length_; }
 	bool Serrated() const { return serrated_; }

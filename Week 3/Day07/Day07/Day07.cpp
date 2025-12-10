@@ -44,14 +44,33 @@
 
 */
 
+void Counter()
+{
+    //create i in the static section of memory
+    static int i = 0;
+    std::cout << i << " ";
+    i++;
+}
 
 int main()
 {
+    for (size_t i = 0; i < 10; i++)
+    {
+        Counter();
+    }
     Color clr{ 255,0,0,255 };
     //EVERYTIME you create an instance of a class, you are calling a constructor
     //Pistol revolver;//calling a default ctor
     Pistol revolver(200, 50, "45 Desert Eagle", 5, 9);
+    Pistol p2(100, 25, "45", 3, 15);
+    Pistol p3 = revolver + p2 ;
+
     Knife stabby(25, 3, true, 7);
+
+    //Weapon wpn(100, 50);
+
+    std::cout << stabby.CalculateDamage() << "\n";
+    std::cout << revolver.CalculateDamage() << "\n";
     //revolver.MagSize(20);//calls the setter
     //revolver.SetRounds(10);//calls the setter
     //revolver.Caliber("38special");
