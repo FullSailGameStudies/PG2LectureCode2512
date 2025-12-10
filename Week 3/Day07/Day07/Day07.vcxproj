@@ -131,14 +131,18 @@
     <ClCompile Include="..\..\..\Shared\Input\Input.cpp" />
     <ClCompile Include="Day07.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Knife.cpp" />
     <ClCompile Include="Pistol.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Shared\Console\Console.h" />
     <ClInclude Include="..\..\..\Shared\Input\Input.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Knife.h" />
     <ClInclude Include="Pistol.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

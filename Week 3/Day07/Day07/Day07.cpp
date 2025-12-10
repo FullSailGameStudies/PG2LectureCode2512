@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Pistol.h"
 #include "Color.h"
+#include "Knife.h"
 
 
 /*              CLASSESS
@@ -49,7 +50,8 @@ int main()
     Color clr{ 255,0,0,255 };
     //EVERYTIME you create an instance of a class, you are calling a constructor
     //Pistol revolver;//calling a default ctor
-    Pistol revolver("45 Desert Eagle", 5, 9);
+    Pistol revolver(200, 50, "45 Desert Eagle", 5, 9);
+    Knife stabby(25, 3, true, 7);
     //revolver.MagSize(20);//calls the setter
     //revolver.SetRounds(10);//calls the setter
     //revolver.Caliber("38special");

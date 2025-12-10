@@ -1,14 +1,17 @@
 #pragma once
 #include <string>
+#include "Weapon.h"
 
-class Pistol
+// in C++, you can inherite from multiple classes
+//	 
+class Pistol : public Weapon
 {
 public:
 	//Constructor
 	//  IF you do not create a ctor, the compiler will give you a default ctor
 	//  default ctor: has no parameters
 	//  IF you do create any ctor, the compiler's ctor is not longer created
-	Pistol(const std::string& caliber, int rounds, int magSize);
+	Pistol(int damage, int range, const std::string& caliber, int rounds, int magSize);
 
 	//getters/setters to be part of the public interface of the class
 	//  the definition can be put in the header with the declaration

@@ -1,7 +1,9 @@
 #include "Pistol.h"
 
-Pistol::Pistol(const std::string& caliber, int rounds, int magSize) :
+Pistol::Pistol(int damage, int range, const std::string& caliber, int rounds, int magSize) :
 	//member initialization list
+	//  call the base ctor here too
+	Weapon(damage, range),
 	caliber_(caliber),
 	rounds_(rounds),
 	magSize_(magSize)
