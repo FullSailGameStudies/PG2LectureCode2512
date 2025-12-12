@@ -13,6 +13,11 @@ public:
 	{
 		return Weapon::CalculateDamage();
 	}
+	void ShowMe() override
+	{
+		Weapon::ShowMe();
+		std::cout << " Serrated: " << serrated_ << " Length: " << length_ << "\n\n";
+	}
 
 	int Length() const { return length_; }
 	bool Serrated() const { return serrated_; }

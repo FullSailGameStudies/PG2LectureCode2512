@@ -5,6 +5,7 @@
 #include "Pistol.h"
 #include "Color.h"
 #include "Knife.h"
+#include "Inventory.h"
 
 
 /*              CLASSESS
@@ -52,8 +53,54 @@ void Counter()
     i++;
 }
 
+Pistol* MakeGun()
+{
+    Pistol* revolver = new Pistol(200, 50, "45 Desert Eagle", 5, 9);
+    return revolver;
+}
+
 int main()
 {
+    //created in the stack section of memory
+    {
+        int nummy = 5;
+        int nummy2 = 10;
+        int& numRef = nummy;
+        int* nummyPtr = nullptr;
+        //(*nummyPtr)++;
+        nummyPtr = &nummy;//&var means address-of
+        std::cout << nummyPtr << "\n";
+        std::cout << *nummyPtr << "\n";
+        nummyPtr = &nummy2;
+    }//all of these stack variables are deallocated (removed from memory)
+
+    //heap memory lives longer than the stack
+    //  ' = new ' that is created heap memory
+    {
+        //numPtr var itself is on the stack
+        // int(15) is on the heap
+        int* numPtr = new int(15);
+
+        //every '=new' requires a 'delete'
+        delete numPtr;//deallocates the heap memory
+
+        //(*numPtr)++;
+
+    }//numPtr is removed but not int(15)
+    //a memory leak is when we've allocated some
+    //heap memory but cannot remove it any longer
+
+    {
+        std::unique_ptr<Pistol> uPistol =
+            std::make_unique<Pistol>(200, 50, "45 Desert Eagle", 5, 9);
+        std::unique_ptr<Pistol> uPistol2 = std::move(uPistol);
+        //moves the ownership from uPistol to uPistol2
+        //uPistol->CalculateDamage();
+    }//unique_ptr deletes its memory when it goes out of scope automatically
+
+    Weapon::Reporting();
+
+
     for (size_t i = 0; i < 10; i++)
     {
         Counter();
@@ -65,7 +112,30 @@ int main()
     Pistol p2(100, 25, "45", 3, 15);
     Pistol p3 = revolver + p2 ;
 
+    Pistol* pGun = &p3;
+    std::cout << (*pGun).GetRounds() << "\n";
+    std::cout << pGun->GetRounds() << "\n";
+
     Knife stabby(25, 3, true, 7);
+
+    Inventory backpack(10);
+    //&variable means get the address-of the variable
+    backpack.AddItem(&revolver);
+    backpack.AddItem(&stabby);
+    backpack.ShowItems();
+
+
+    pGun = new Pistol(200, 50, "45 Desert Eagle", 5, 9);
+    Pistol* pGun2 = pGun;
+    pGun->CalculateDamage();
+    delete pGun;
+    pGun = nullptr;
+
+    if (pGun != nullptr)
+    {
+
+    }
+    //pGun2->CalculateDamage();
 
     //Weapon wpn(100, 50);
 

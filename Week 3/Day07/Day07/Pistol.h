@@ -35,6 +35,12 @@ public:
 	//	'override' is optional, but good
 	int CalculateDamage() override;
 
+	void ShowMe() override
+	{
+		Weapon::ShowMe();
+		std::cout << " Rounds: " << rounds_ << " Mag Size: " << magSize_ << "\n\n";
+	}
+
 	Pistol operator+(const Pistol& other)
 	{
 		Pistol newGun(Damage(), Range(), caliber_, rounds_ + other.rounds_, magSize_);

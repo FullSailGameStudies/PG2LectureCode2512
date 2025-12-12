@@ -17,8 +17,11 @@ class Inventory
 	// these sections can be in any order and any number of them
 public:
 	Inventory(int maxSize) : maxSize_(maxSize)	{}
-	Inventory(const std::vector<Pistol>& items);
-	Inventory(int maxSize, const std::vector<Pistol>& items);
+	Inventory(const std::vector<Weapon*>& items);
+	Inventory(int maxSize, const std::vector<Weapon*>& items);
+
+	void AddItem(Weapon* wpn);
+	void ShowItems();
 
 	//alternate naming:
 	//  not use the 'get' prefix
@@ -35,7 +38,7 @@ public:
 private:
 	//create a Pistol class
 	//  number of rounds, caliber, magSize
-	std::vector<Pistol> items_;
+	std::vector<Weapon*> items_;
 	int maxSize_;
 };
 
